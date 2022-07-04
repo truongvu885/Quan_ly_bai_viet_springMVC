@@ -1,0 +1,20 @@
+config : JPAconfig
+    - entity manager : Thực thi các câu lệnh sql
+    - entity manager factory : open connection (driver name,...)
+    - transaction : quản lý các tác vụ, commit rollback
+spring data JPA ( spring >4 )
+jpa repository
+spring data jpa example
+
+@Repository
+@Service
+@Component
+
+@EnableTransaction...
+-------------
+spring secutiry
+    - authentication : kiểm tra sự tồn tại của acc
+    - authoriation : phân quyền admin vs user
+user, role relationship n-n -> user_role
+
+@MappedSuperclass : entity cha
