@@ -24,6 +24,7 @@
             base-package="com.springmvc.controller" />
 
     <mvc:resources mapping="/template/**" location="/template/" />
+
     <mvc:annotation-driven />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

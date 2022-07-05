@@ -10,16 +10,16 @@ import javax.persistence.*;
 @Setter
 public class NewEntity extends BaseEntity{
 
-    @Column
+    @Column(name = "title")
     private String title;
 
-    @Column
+    @Column(name = "thumbnail")
     private String thumbnail;
 
     @Column(name = "shortDe",columnDefinition = "TEXT")
     private String shortDescription;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "content",columnDefinition = "TEXT")
     private String content;
 
     @Column(name = "categoryid")

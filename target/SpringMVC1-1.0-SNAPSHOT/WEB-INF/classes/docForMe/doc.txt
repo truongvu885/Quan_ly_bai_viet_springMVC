@@ -10,9 +10,18 @@ spring data jpa example
 @Service
 @Component
 
-@EnableTransaction...
+@EnableTransaction... (đang bị error)
 -------------
 spring secutiry
     - authentication : kiểm tra sự tồn tại của acc
     - authoriation : phân quyền admin vs user
 user, role relationship n-n -> user_role
+
+@MappedSuperclass : entity cha
+trong spring security password mã hóa dưới dạng md5
+
+JPA auditing : tự động thêm createdby,date, m
+@EntityListeners(AuditingEntityListener.class) @CreatedBy,date,modify
+class JpaAuditingConfig
+
+properties.setProperty("hibernate.enable_lazy_load_no_trans", "true"); bật true tính năng feth= lazy khi có data từ entity khác trong entity @manytomany...
