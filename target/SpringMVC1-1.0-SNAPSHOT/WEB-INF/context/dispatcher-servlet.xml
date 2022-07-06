@@ -21,7 +21,7 @@
               http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan
-            base-package="com.springmvc.controller" />
+            base-package="com.springmvc.controller , com.springmvc.api" />
 
     <mvc:resources mapping="/template/**" location="/template/" />
 

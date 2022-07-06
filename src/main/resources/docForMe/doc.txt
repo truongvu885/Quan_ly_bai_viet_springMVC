@@ -25,3 +25,7 @@ JPA auditing : tự động thêm createdby,date, m
 class JpaAuditingConfig
 
 properties.setProperty("hibernate.enable_lazy_load_no_trans", "true"); bật true tính năng feth= lazy khi có data từ entity khác trong entity @manytomany...
+
+có 2 loại web service
+SOAP : xml
+restful : json

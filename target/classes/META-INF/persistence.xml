@@ -6,5 +6,7 @@
         <class>com.springmvc.entity.NewEntity</class>
         <class>com.springmvc.entity.UserEntity</class>
         <class>com.springmvc.entity.RoleEntity</class>
+        <class>com.springmvc.entity.CategoryEntity</class>
+
     </persistence-unit>
 </persistence>

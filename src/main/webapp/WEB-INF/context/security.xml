@@ -9,9 +9,9 @@
 
     <http auto-config="false" use-expressions="true" disable-url-rewriting="true">
 
-        <intercept-url pattern="/admin/home" access="hasAnyRole('ADMIN')" />
-
         <access-denied-handler error-page="/accessDenied" />
+        <intercept-url pattern="/admin/home" access="hasAnyRole('ADMIN')" />
+        <intercept-url pattern="/trang-chu" access="hasAnyRole('USER')" />
 
         <form-login  login-page="/login"
                      username-parameter="j_username"
@@ -19,7 +19,7 @@
                      login-processing-url="/j_spring_security_check"
                      authentication-success-handler-ref="customSuccessHandler"
                      authentication-failure-url="/login?incorrectAccount"/>
-        <session-management invalid-session-url="/login?sessionTimeout"/> <!--thời gian tối thiểu người dùng không sử dụng web-->
+        <session-management invalid-session-url="/login?sessionTimeout"/>
 
         <logout delete-cookies="JSESSIONID"/>
     </http>

@@ -5,9 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "new")
 @Getter
 @Setter
+@Table(name = "new")
 public class NewEntity extends BaseEntity{
 
     @Column(name = "title")
@@ -22,8 +22,10 @@ public class NewEntity extends BaseEntity{
     @Column(name = "content",columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "categoryid")
-    private Long categoryId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private CategoryEntity categoryId;
 
 
 }
