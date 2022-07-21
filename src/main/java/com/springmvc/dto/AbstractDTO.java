@@ -14,9 +14,9 @@ public class AbstractDTO<T> {
 	private long[] ids;
 	private List<T> listResult = new ArrayList<>();
 	private Integer page;
-	private Integer maxPageItem;
-	private Integer totalPage;
-	private Integer totalItem;
+	private Integer limit;
+	private Integer totalPage;//tổng số page
+	private Integer totalItem;// tổng số item
 	private String sortName;
 	private String sortBy;
 	private String alert;
@@ -71,11 +71,11 @@ public class AbstractDTO<T> {
 	public void setPage(Integer page) {
 		this.page = page;
 	}
-	public Integer getMaxPageItem() {
-		return maxPageItem;
+	public Integer getLimit() {
+		return limit;
 	}
-	public void setMaxPageItem(Integer maxPageItem) {
-		this.maxPageItem = maxPageItem;
+	public void setLimit(Integer maxPageItem) {
+		this.limit = maxPageItem;
 	}
 	public Integer getTotalPage() {
 		return totalPage;

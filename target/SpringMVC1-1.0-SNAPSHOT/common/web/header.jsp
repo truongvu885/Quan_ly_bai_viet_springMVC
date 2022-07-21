@@ -19,7 +19,7 @@
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="<c:url value="/trang-chu"/>">Trang
                     chủ</a></li>
                 <security:authorize access="isAnonymous()">
-                    <li class="nav-item"><a class="nav-link" href="#!">Đăng nhập</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<c:url value="/login"/>">Đăng nhập</a></li>
                     <li class="nav-item"><a class="nav-link" href="#!">Đăng ký</a></li>
                 </security:authorize>
                 <security:authorize access="isAuthenticated()">

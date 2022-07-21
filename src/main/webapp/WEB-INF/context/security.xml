@@ -11,7 +11,6 @@
 
         <access-denied-handler error-page="/accessDenied" />
         <intercept-url pattern="/admin/home" access="hasAnyRole('ADMIN')" />
-        <intercept-url pattern="/trang-chu" access="hasAnyRole('USER')" />
 
         <form-login  login-page="/login"
                      username-parameter="j_username"

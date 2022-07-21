@@ -1,112 +1,143 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api/new"/>
-<html>
+<%@include file="/common/taglib.jsp" %>
+<c:url var="newsListURL" value="/admin/new/list" />
+<c:url value="/api/new" var="newsApi" />
+<c:url var="editUrl" value="/admin/new/edit"/>
+<html lang="">
 <head>
     <title>Chỉnh sửa bài viết</title>
 </head>
 <body>
 <div class="main-content">
-    <div class="main-content-inner">
-        <div class="breadcrumbs" id="breadcrumbs">
-            <script type="text/javascript">
-                try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-            </script>
-            <ul class="breadcrumb">
-                <li>
-                    <i class="ace-icon fa fa-home home-icon"></i>
-                    <a href="#">Trang chủ</a>
-                </li>
-                <li class="active">Chỉnh sửa bài viết</li>
-            </ul><!-- /.breadcrumb -->
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-xs-12">
-                        <c:if test="${not empty message}">
-                            <div class="alert alert-${alert}">
-                                    ${message}
-                            </div>
-                        </c:if>
-                        <form id="formSubmit">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Thể loại</label>
-                                <div class="col-sm-9">
-                                    <select class="form-control" id="categoryCode" name="categoryCode">
-                                        <c:if test="${empty model.categoryCode}">
-                                            <option value="">Chọn loại bài viết</option>
-                                            <c:forEach var="item" items="${categories}">
-                                                <option value="${item.code}">${item.name}</option>
-                                            </c:forEach>
-                                        </c:if>
-                                        <c:if test="${not empty model.categoryCode}">
-                                            <option value="">Chọn loại bài viết</option>
-                                            <c:forEach var="item" items="${categories}">
-                                                <option value="${item.code}" <c:if test="${item.code == model.categoryCode}">selected="selected"</c:if>>
-                                                        ${item.name}
-                                                </option>
-                                            </c:forEach>
-                                        </c:if>
-                                    </select>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="title" name="title" value="${model.title}"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Hình đại diện</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="thumbnail" name="thumbnail" value=""/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Mô tả ngắn</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="shortDescription" name="shortDescription" value="${model.shortDescription}"/>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label no-padding-right">Nội dung</label>
-                                <div class="col-sm-9">                                 
-                                    <textarea rows="" cols="" id="content" name="content" style="width: 820px;height: 175px">${model.content}</textarea>
-                                </div>
-                            </div>
-                            <br/>
-                            <br/>
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <c:if test="${not empty model.id}">
-                                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Cập nhật bài viết" id="btnAddOrUpdateNew"/>
-                                    </c:if>
-                                    <c:if test="${empty model.id}">
-                                        <input type="button" class="btn btn-white btn-warning btn-bold" value="Thêm bài viết" id="btnAddOrUpdateNew"/>
-                                    </c:if>
-                                </div>
-                            </div>
-                            <input type="hidden" value="${model.id}" id="id" name="id"/>
-                        </form>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="<c:url value="/admin/new/list?page=1&limit=2"/>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Quản lý bài viết
+                        </a>
+                    </div>
                 </div>
-            </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Start Bootstrap
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="main-content-inner">
+                    <div class="breadcrumbs" id="breadcrumbs">
+                        <script type="text/javascript">
+                            try {
+                                ace.settings.check('breadcrumbs', 'fixed')
+                            } catch (e) {
+                            }
+                        </script>
+                        <ul class="breadcrumb">
+                            <li class="active">Chỉnh sửa bài viết</li>
+                        </ul><!-- /.breadcrumb -->
+                    </div>
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <c:if test="${not empty message}">
+                                    <div class="alert alert-${alert}">
+                                        <strong>${message}</strong>
+                                    </div>
+                                </c:if>
+                                <form:form id="formSubmit" enctype="multipart/form-data" modelAttribute="model">
+                                    <div class="form-group">
+                                        <label for="categoryCode" class="col-sm-3 control-label no-padding-right">Thể loại</label>
+                                        <div class="col-sm-9">
+                                            <form:select path="categoryCode" class="form-control" >
+                                                <form:option value="" label="--Chọn thể loại--" />
+                                                <form:options items="${categories}" />
+                                            </form:select>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right">Tiêu đề</label>
+                                        <div class="col-sm-9">
+                                            <form:input class="form-control" path="title"/>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right">Mô tả ngắn</label>
+                                        <div class="col-sm-9">
+                                            <form:input path="shortDescription" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right">Nội dung</label>
+                                        <div class="col-sm-9">
+                                            <form:textarea cssClass="form-control" cols="10" rows="7" path="content" />
+                                        </div>
+                                    </div>
+                                    <form:hidden path="id" id="newId" />
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <c:if test="${not empty model.id}">
+                                                <input type="submit" class="btn btn-white btn-warning btn-bold" value="Cập nhập" id="btnAddOrUpdateNew"/>
+                                            </c:if>
+                                            <c:if test="${empty model.id}">
+                                                <input type="submit" class="btn btn-white btn-warning btn-bold" value="Thêm" id="btnAddOrUpdateNew"/>
+                                            </c:if>
+                                            <input type="reset" class="btn btn-white btn-warning btn-bold" value="reset" id="btnReset"/>
+                                        </div>
+                                    </div>
+                                </form:form>
+                                <form action="<c:url value="/admin/new/img"/>" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right">Hình đại diện</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" type="file" id="img_input" name="img" accept=" image/png, img/jpg "/>
+                                        </div>
+                                        <div class="form-control">
+                                            <div id="display_img" class="form-control align-items-center"  style=" width: 375px;
+                                                                                    height: 211px;
+                                                                                    border: 1px solid black;
+                                                                                    background-position: center;
+                                                                                    background-size: cover;">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-control">
+                                            <input type="submit" id="btnUpimg" name="btnUpimg" value="Tải lên">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
 </div>
 <script>
-	var editor = '';
-	$(document).ready(function(){
-		editor = CKEDITOR.replace( 'content');
-	});
-	
+
+    const img_input = document.querySelector("#img_input");
+    let upload_img = "";
+
+    img_input.addEventListener("change",function(){
+        const reader = new FileReader();
+        reader.addEventListener("load",() => {
+            upload_img = reader.result;
+            document.getElementById("display_img").style.backgroundImage = "url("+upload_img+")";
+        });
+        reader.readAsDataURL(this.files[0]);
+    });
+
     $('#btnAddOrUpdateNew').click(function (e) {
         e.preventDefault();
         var data = {};
@@ -114,41 +145,44 @@
         $.each(formData, function (i, v) {
             data[""+v.name+""] = v.value;
         });
-        data["content"] = editor.getData();
-        var id = $('#id').val();
-        if (id == "") {
-            addNew(data);
+
+        console.log(data);
+        var id = $('#newId').val();
+        if (id === "") {
+            addNews(data);
         } else {
-            updateNew(data);
+            updateNews(data);
         }
     });
-    function addNew(data) {
+
+    function addNews(data) {
         $.ajax({
-            url: '${APIurl}',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
+           url:'${newsApi}',
+           type:'POST',
+            data:JSON.stringify(data),
+            contentType:'application/json',
+            processData: false,
+            enctype: 'multipart/form-data',
             success: function (result) {
-                console.log(result);
+                window.location.href = "${editUrl}?id="+result.id+"&message=insert_success";
             },
             error: function (error) {
-                console.log(error);
+                window.location.href = "${newsListURL}?page=1&limit=2&message=error_system";
             }
         });
     }
-    function updateNew(data) {
+    function updateNews(data) {
         $.ajax({
-            url: '${APIurl}',
+            url: '${newsApi}',
             type: 'PUT',
-            contentType: 'application/json',
             data: JSON.stringify(data),
+            contentType: 'application/json',
             dataType: 'json',
             success: function (result) {
-                console.log(result);
+                window.location.href = "${editUrl}?id="+result.id+"&message=update_success";
             },
             error: function (error) {
-                console.log(error);
+                window.location.href = "${newsListURL}?page=1&limit=2&message=error_system";
             }
         });
     }

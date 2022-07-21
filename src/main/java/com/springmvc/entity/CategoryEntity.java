@@ -18,5 +18,5 @@ public class CategoryEntity extends BaseEntity {
     private String code;
 
     @OneToMany(mappedBy = "categoryId")
-    List<NewEntity> newList = new ArrayList<>();
+    List<NewsEntity> newList = new ArrayList<>();
 }
