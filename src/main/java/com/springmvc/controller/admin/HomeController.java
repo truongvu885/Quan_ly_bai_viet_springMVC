@@ -11,7 +11,7 @@ public class HomeController {
     @GetMapping(value = "/admin/home")
     public ModelAndView homePage(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admi/home");
+        modelAndView.setViewName("admin/home");
         return modelAndView;
     }
 

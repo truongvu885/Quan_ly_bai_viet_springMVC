@@ -12,7 +12,8 @@ values('nguyenvanb','$2a$10$/RUbuT9KIqk6f8enaTQiLOXzhnUkiwEJRdtzdrMXXwU7dgnLKTCY
 
 INSERT INTO user_role(userid,roleid) VALUES (1,1);
 INSERT INTO user_role(userid,roleid) VALUES (2,2);
-INSERT INTO user_role(userid,roleid) VALUES (3,2);
+INSERT INTO user_role(userid,roleid) VALUES (3,1);
+
 
 select * from role;
 select * from user;

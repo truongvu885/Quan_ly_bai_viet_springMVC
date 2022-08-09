@@ -3,11 +3,8 @@ package com.springmvc.api.admin;
 import com.springmvc.dto.NewsDTO;
 import com.springmvc.service.INewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @RestController(value = "NewAPIOfAdmin")
 public class NewsAPI {
